@@ -252,7 +252,7 @@ async def on_member_join(member):
 
 
    
-client.login(process.env."NDM1Mzc5MDU1MjUzMTI3MTc4.Dd1NTw.G-9AdRdO_40_F0ch4tQwPbM3k-o")
+client.run(process.env."NDM1Mzc5MDU1MjUzMTI3MTc4.Dd1NTw.G-9AdRdO_40_F0ch4tQwPbM3k-o")
 
 
 
