@@ -5,6 +5,7 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
 import time
+import requests
 import random
 import logging
 from discord.utils import get
@@ -14,8 +15,13 @@ import json
 import os.path
 import os
 
+type = 1
 Client = discord.Client()
 client = commands.Bot(command_prefix = "/")
+
+minutes = 0
+hour = 0
+
 
 @client.event
 async def on_ready():
