@@ -1,6 +1,18 @@
 #Cakebot by Abby 
 
-
+import discord
+from discord.ext.commands import Bot
+from discord.ext import commands
+import asyncio
+import time
+import random
+import logging
+from discord.utils import get
+import datetime
+from re import match
+import json
+import os.path
+import os
 
 Client = discord.Client()
 client = commands.Bot(command_prefix = "/")
