@@ -254,7 +254,7 @@ async def on_member_join(member):
 
 
    
-client.run(str(os.environ.get('NDM1Mzc5MDU1MjUzMTI3MTc4.Dd1cWQ.utK_yzHlewGOtCk5WIXZwgdTMgI')))
+client.run(str(os.environ.get('My Bot token')))
 
 
 
