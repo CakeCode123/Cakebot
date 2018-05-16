@@ -252,7 +252,7 @@ async def on_member_join(member):
 
 
    
-client.run("NDM1Mzc5MDU1MjUzMTI3MTc4.DcGT9g.LbTzEqkx-RSe3esarOZj1TG8Tv4")
+client.run("token")
 
 
 
