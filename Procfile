@@ -1,1 +1,1 @@
-worker: python cake.py
+worker: python Cake.py
