@@ -1,1 +1,1 @@
-worker: python Cake.py
+worker: python Bot.py
