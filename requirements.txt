@@ -8,7 +8,6 @@ Pymoe
 simplejson
 youtube_dl
 pip
-random
 logging
 datetime
 time
