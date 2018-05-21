@@ -22,9 +22,10 @@ client = commands.Bot(command_prefix = "/")
 async def on_ready():
     print(client.user.id)
     print("Bot is ready and connected to discord")
-    await client.change_presence(game=discord.Game(name='with version 1.2 alpha'))
-    #Fun!
+    await client.change_presence(game=discord.Game(name='with version 2.2 alpha'))
+   
 
+#Fun Commands!
 
 @client.event
 async def on_message(message):
@@ -261,43 +262,52 @@ async def on_message(message):
         await client.send_message(message.channel, "no u {0.author.mention}".format(message))
 
     if client.user.id != message.author.id:
-        if 'no u' in message.content:
+        if 'no u' in message.content.lower():
             await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
     
     if client.user.id != message.author.id:
-        if 'gay' in message.content:
-            await client.send_message(message.channel, 'ur gayer {0.author.mention}'.format(message))
-    
-    if client.user.id != message.author.id:
-        if 'anime suckz' in message.content:
+        if 'anime suckz' in message.content.lower():
             await client.delete_message(message)
             await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
     if client.user.id != message.author.id.lower():
-        if 'Gay' in message.content:
-            await client.send_message(message.channel, 'ur gayer {0.author.mention}'.format(message))
+        if 'gay' in  message.content.lower():
+            await client.send_message(message.channel, 'ur gayer {0.author.mention}'.format(message))    
 
     if client.user.id != message.author.id:
-        if 'Gey' in message.content:
-            await client.send_message(message.channel, 'ur gayer {0.author.mention}'.format(message))
-    
-
-    if client.user.id != message.author.id:
-        if 'GEY' in message.content:
+        if 'gey' in message.content.lower():
             await client.send_message(message.channel, 'ur geyer {0.author.mention}'.format(message))
-    
+
 
 @client.event
 async def on_member_join(member):
-    server = member.server 
-    for user in server.members:
-        if user.server_permissions.administrator:
-            await client.send_message(user, "A new member has joined fun channel! :3")
+    role = discord.utils.get(member.server.roles, id="365737396781973504")
+    await client.add_roles(member, role)
 
 
 
     
-            
+    
+client.run("NDM1Mzc5MDU1MjUzMTI3MTc4.Dd2HJQ.Zf0p51FvpfvXWT-cnXFECwxqbMY")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
 
