@@ -1,4 +1,6 @@
 #Cakebot by Abby 
+
+
 import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
@@ -13,11 +15,8 @@ import json
 import os.path
 import os
 
-
 Client = discord.Client()
 client = commands.Bot(command_prefix = "/")
-
-
 
 @client.event
 async def on_ready():
@@ -26,6 +25,7 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name='with version 1.2 alpha'))
     #Fun!
 
+
 @client.event
 async def on_message(message):
     if message.content.upper().startswith('/HEWO'):
@@ -33,7 +33,7 @@ async def on_message(message):
             await client.send_message(message.channel, "Nice!")
         else:
             await client.send_message(message.channel, "You do not have permissions to execute this command!") 
-    if message.content.startswith('/8ball'):
+    if message.content.lower().startswith('/8ball'):
       await client.send_message(message.channel, random.choice(["It is decidedly so :8ball:",
                                                               "Without a doubt :8ball:",
                                                               "Yes, definitely :8ball:",
@@ -57,33 +57,75 @@ async def on_message(message):
                                                               "Instant deny!:8ball:",
                                                               "NO! JUST NO.:8ball:",
                                                               "Invalid Question.exe"]))   
-    if message.content.startswith('/coinflip'):
+                                                          
+    if message.content.lower().startswith("/gif"):
+        await client.send_message(message.channel, random.choice(["https://media0.giphy.com/media/f4V2mqvv0wT9m/giphy.gif",
+                                                         "https://media.giphy.com/media/4QxQgWZHbeYwM/giphy.gif",
+                                                         "https://thumbs.gfycat.com/OblongRapidAvocet-size_restricted.gif",
+                                                         "https://media1.tenor.com/images/445c3de1f9a6a87694bcbb2739d35451/tenor.gif?itemid=8312712",
+                                                         "https://i.pinimg.com/originals/b6/5c/5e/b65c5e33a54a2468a6e9f6e119cdaf9f.gif",
+                                                         "https://i.imgur.com/M3BG3Ck.gif",
+                                                         "http://i0.kym-cdn.com/photos/images/newsfeed/001/087/562/93c.gif",
+                                                         "http://i.imgur.com/0jAef66.gif",
+                                                         "https://thumbs.gfycat.com/InfatuatedUnrulyGyrfalcon-max-1mb.gif",
+                                                         "https://i.gifer.com/Jn9R.gif",
+                                                         "https://i.pinimg.com/originals/63/78/68/6378684a9a66f479c952d1ee1e854bd9.gif",
+                                                         "https://media.giphy.com/media/gnvlmIRPzVnGM/giphy.gif",
+                                                         "https://i.pinimg.com/originals/29/91/7a/29917a5226ee8f1ef08a4a2e6afde524.gif",
+                                                         "https://78.media.tumblr.com/8a1e120208a2d5b9d73ac9d3131d2fa2/tumblr_obrs3lLMna1s5f9ado2_500.gif",
+                                                         "https://78.media.tumblr.com/399259fe9dcae09a36f7ee4d35f7b514/tumblr_okt2l5Khy31tydz8to1_500.gif",
+                                                         "https://media1.tenor.com/images/9a64d7e66082895dfd26872e1929631a/tenor.gif?itemid=6062473",
+                                                         "https://media1.tenor.com/images/694927eede67ccf45f2601b9c2aad98b/tenor.gif?itemid=5401519",
+                                                         "https://media1.tenor.com/images/9db3300382b4692e3aa95164161ab2e8/tenor.gif?itemid=9188406",
+                                                         "https://thumbs.gfycat.com/LegalMiniatureChihuahua-size_restricted.gif",
+                                                         "https://media1.tenor.com/images/80a38c215bcde77ab897d1bea3c7bf96/tenor.gif?itemid=6078924",
+                                                         "https://vignette.wikia.nocookie.net/love-live/images/6/65/KoiAqua_Hanamaru.gif/revision/latest?cb=20160712080936",
+                                                         "https://media1.tenor.com/images/bea0139e175637da295b61164a8e33c2/tenor.gif?itemid=7222980",
+                                                         "https://media.giphy.com/media/ZLr299JYCUEHm/giphy.gif",
+                                                         "https://media1.tenor.com/images/fcc16d68c200fd0ff17e6e27978fb6c3/tenor.gif?itemid=7552283",
+                                                         "https://media1.tenor.com/images/831c64bcece59befbe6157bbb3a9f0fe/tenor.gif?itemid=7817206",
+                                                         "https://media1.tenor.com/images/fdafbad47d6a69cb5d3a90a8b9dff86f/tenor.gif?itemid=4936338",
+                                                         "https://data.whicdn.com/images/284330063/original.gif"]))
+
+
+    if message.content.lower().startswith('/coinflip'):
        await client.send_message(message.channel, random.choice(["Tails! :large_orange_diamond:",
                                                                 "Heads! :large_blue_diamond:",
                                                                 "Heads! :large_blue_diamond:",
                                                                 "Tails! :large_orange_diamond:",
                                                                 "Tails! :large_orange_diamond:",
                                                                 "Heads! :large_blue_diamond:"]))
-    if message.content.startswith("/say"):
+    if message.content.lower().startswith("/say"):
         variable = message.content[len('/say'):].strip()
         await client.send_message(message.channel, variable)
         await client.delete_message(message)
     
-    if message.content.startswith("/rage"):
+    if message.content.lower().startswith("/rage"):
         await client.send_message(message.channel, random.choice(["(ノ ゜Д゜)ノ ︵ ┻━┻",
                                                                  "(╯°□°)╯︵ ┻━┻ ︵ ╯(°□° ╯)",
                                                                  "http://i39.tinypic.com/kd0rk4.jpg",
                                                                  "http://cdn.playbuzz.com/cdn/ee40bd70-7e8d-4a83-b492-0aa7ee791f76/4ae7d4fd-3ea3-4d4a-8d37-f2c726480e72.jpg",
                                                                  "http://www.ragefaces.memesoftware.com/faces/large/neutral-suspicious-l.png",]))
 
-    if message.content.startswith('/help'):
-        embed = discord.Embed(title="Guide", description="Hi i'm cake bot and i'm made by Cupquake123#2042! ", color=0xfcf467)
-        embed.set_author(name="Cupquake123#2042", url="https://bit.ly/2xDvi4x", icon_url="https://pbs.twimg.com/profile_images/974402424071794688/Q2Sq6RPO_400x400.jpg")
-        embed.add_field(name="Commands", value="My commands are", inline=False)
-        embed.set_footer(text="/8ball - /coinflip - /say - /rage - /user - /dab - /server - /links")
+    if message.content.lower().startswith('/help'):
+        embed=discord.Embed(color=0xf4ea60)
+        embed.set_thumbnail(url="https://pbs.twimg.com/profile_images/1508719360/_animepaper.net_avatar-box-anime-k-on_-i-love-my-music-mio-195545-wonderngo-medium-6c54be5d.jpg")
+        embed.add_field(name="Hi! I'm cake bot", value="I'm a bot made for a server called fun channel!", inline=True)
+        embed.add_field(name="My Commands", value="my prefix is = /", inline=True)
+        embed.add_field(name="Help" , value="This (Duh)", inline=False)
+        embed.add_field(name="Links" , value="My Master's Social links! (Be sure to follow!)", inline=True)
+        embed.add_field(name="User" , value="Shows a user's information", inline=True)
+        embed.add_field(name="8Ball" , value="Predicts everything and anything", inline=False)
+        embed.add_field(name="Coinflip" , value="Flips you a majestic coin", inline=True)
+        embed.add_field(name="Say" , value="Copies what you say!", inline=False)
+        embed.add_field(name="Dab", value="Ehm.. <o/", inline=True)
+        embed.add_field(name="Rage" , value="Sends a random rage picture", inline=False)
+        embed.add_field(name="Gif" , value="Random anime gifs", inline=True)
+        embed.add_field(name="Invite" , value="Shows the server's invite link!", inline=False)
+        embed.set_footer(text="Many more commands to come! | Fun Channel")
         await client.send_message(message.channel, embed=embed)
 
-    if message.content.startswith('/server'):
+    if message.content.lower().startswith('/server'):
         embed = discord.Embed(title="Fun Channel", url="https://discord.gg/T5Q7C5Q", color=0x4afbf7)
         embed.set_author(name="Server Details", icon_url="https://cdn.discordapp.com/attachments/347362023828488192/441064604366405642/Dab.png")
         embed.add_field(name="Welcome!", value="Fun channel as the name suggests is where we have fun! feel free to talk and chat to people! <3", inline=True)
@@ -94,7 +136,15 @@ async def on_message(message):
         embed.set_footer(text="Fun Channel")
         await client.send_message(message.channel, embed=embed)
 
-    if message.content.startswith('/links'):
+    if message.content.lower().startswith('/apply'):
+        embed = discord.Embed(color=0xb1fcf4)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/347362023828488192/446892855609262080/Dab.png")
+        embed.add_field(name="Staff Application Fourm", value="Fun Channel", inline=False)
+        embed.add_field(name="Apply now!", value="https://goo.gl/forms/9SF8PtdpudF3dfqr1", inline=True)
+        await client.send_message(message.channel, embed=embed)
+    
+    
+    if message.content.lower().startswith('/socialmedia'):
         embed = discord.Embed(title="Social Media", color=0x78f5d0)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/438864185976291342/443230701974978561/kotori_pfp.png")
         embed.add_field(name="Twitter", value="https://twitter.com/abbyplays123", inline=False)
@@ -104,7 +154,7 @@ async def on_message(message):
         embed.set_footer(text="Cake Bot | Fun Channel")
         await client.send_message(message.channel, embed=embed)
 
-    if message.content.startswith('/socialmedia'):
+    if message.content.lower().startswith('/links'):
         embed = discord.Embed(title="Social Media", color=0x78f5d0)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/438864185976291342/443230701974978561/kotori_pfp.png")
         embed.add_field(name="Twitter", value="https://twitter.com/abbyplays123", inline=False)
@@ -114,8 +164,13 @@ async def on_message(message):
         embed.set_footer(text="Cake Bot | Fun Channel")
         await client.send_message(message.channel, embed=embed)
 
+    if message.content.lower().startswith('/invite'):
+        embed=discord.Embed(color=0xf0ea6c)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/347362023828488192/446892855609262080/Dab.png")
+        embed.add_field(name="Discord Invite Link", value="https://discord.gg/T5Q7C5Q", inline=False)
+        await client.send_message(message.channel, embed=embed)
 
-    if message.content.startswith('/user'):
+    if message.content.lower().startswith('/user'):
         try:
             user = message.mentions[0]
             userjoinedat = str(user.joined_at).split('.', 1)[0]
@@ -153,13 +208,13 @@ async def on_message(message):
             await client.send_message(message.channel, "An error as occured! Try again later.")
         finally:
             pass
+
     if match("<@!?435379055253127178>", message.content) is not None:
-        text = await client.send_message(message.channel, "**Baking a cake**")
+        await client.send_message(message.channel,"Hi {0.author.mention} i'm ᴄᴀᴋᴇ ʙᴏᴛ nice to meet you! I'm ran and made by cupcake!".format(message))
+    
 
-        
-
-
-        await client.edit_message(text, "Hi {0.author.mention} i'm cake bot nice to meet you! do /help for more details!".format(message))
+    if 'ᴄᴀᴋᴇ' in message.content:
+        await client.send_message(message.channel, '/help')
 
     if message.content.startswith('/dab'):
         await client.send_message(message.channel, "<o/")
@@ -193,16 +248,32 @@ async def on_message(message):
         await client.delete_message(message)
         await client.send_message(message.channel, "no u {0.author.mention}".format(message))
 
-    if message.content.startswith('anime sucks'):
+    if message.content.startswith('anime suck'):
         await client.delete_message(message)
         await client.send_message(message.channel, "no u {0.author.mention}".format(message))
+
+    if message.content.startswith('animo suckz'):
+        await client.delete_message(message)
+        await client.send_message(message.channel, "no u {0.author.mention}".format(message))
+
+    if message.content.startswith('anime suckyz'):
+        await client.delete_message(message)
+        await client.send_message(message.channel, "no u {0.author.mention}".format(message))
+
+    if client.user.id != message.author.id:
+        if 'no u' in message.content:
+            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
     
-      
     if client.user.id != message.author.id:
         if 'gay' in message.content:
             await client.send_message(message.channel, 'ur gayer {0.author.mention}'.format(message))
-
+    
     if client.user.id != message.author.id:
+        if 'anime suckz' in message.content:
+            await client.delete_message(message)
+            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
+
+    if client.user.id != message.author.id.lower():
         if 'Gay' in message.content:
             await client.send_message(message.channel, 'ur gayer {0.author.mention}'.format(message))
 
@@ -214,6 +285,7 @@ async def on_message(message):
     if client.user.id != message.author.id:
         if 'GEY' in message.content:
             await client.send_message(message.channel, 'ur geyer {0.author.mention}'.format(message))
+    
 
 @client.event
 async def on_member_join(member):
@@ -221,7 +293,7 @@ async def on_member_join(member):
     for user in server.members:
         if user.server_permissions.administrator:
             await client.send_message(user, "A new member has joined fun channel! :3")
-            await client.send_message(discord.Object(id='347362023828488192'), 'Welcome to fun channel!, ')
+
 
 
     
