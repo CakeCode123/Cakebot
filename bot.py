@@ -217,67 +217,49 @@ async def on_message(message):
     if 'ᴄᴀᴋᴇ' in message.content:
         await client.send_message(message.channel, '/help')
 
+
     if message.content.startswith('/dab'):
         await client.send_message(message.channel, "<o/")
         await client.delete_message(message)
-
-    if match("<@!?33758026412370649601>", message.content) is not None:
-        await client.delete_message(message)
-        await client.send_message(message.channel, "OI! {0.author.mention} That's not allowed! My Master is in do not distrub mode! Don't bother my master!".format(message))
     
-    if message.content.startswith('anime is shit'):
-        await client.delete_message(message)
-        await client.send_message(message.channel, "no u {0.author.mention}".format(message))
+    if client.user.id != message.author.id:
+        if 'anime is shit' in message.content.lower():
+            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
-    if message.content.startswith('anime is sht'):
-        await client.delete_message(message)
-        await client.send_message(message.channel, "no u {0.author.mention}".format(message))
+    if client.user.id != message.author.id:
+        if 'anime is sht' in message.content.lower():
+            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
-    if message.content.startswith('anime is bad'):
-        await client.delete_message(message)
-        await client.send_message(message.channel, "no u {0.author.mention}".format(message))
+    if client.user.id != message.author.id:
+        if 'anime is bad' in message.content.lower():
+            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
-    if message.content.startswith('fk anime'):
-        await client.delete_message(message)
-        await client.send_message(message.channel, "no u {0.author.mention}".format(message))
+    if client.user.id != message.author.id:
+        if 'fk anime' in message.content.lower():
+            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
-    if message.content.startswith('anime is gud'):
-        await client.delete_message(message)
-        await client.send_message(message.channel, "Very naice <3 Ofc it is {0.author.mention}".format(message))
-    
-    if message.content.startswith('anime sucks'):
-        await client.delete_message(message)
-        await client.send_message(message.channel, "no u {0.author.mention}".format(message))
+    if client.user.id != message.author.id:
+        if 'fuck anime' in message.content.lower():
+            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
-    if message.content.startswith('anime suck'):
-        await client.delete_message(message)
-        await client.send_message(message.channel, "no u {0.author.mention}".format(message))
-
-    if message.content.startswith('animo suckz'):
-        await client.delete_message(message)
-        await client.send_message(message.channel, "no u {0.author.mention}".format(message))
-
-    if message.content.startswith('anime suckyz'):
-        await client.delete_message(message)
-        await client.send_message(message.channel, "no u {0.author.mention}".format(message))
 
     if client.user.id != message.author.id:
         if 'no u' in message.content.lower():
             await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
     
     if client.user.id != message.author.id:
-        if 'anime suckz' in message.content.lower():
+        if 'anime suck' in message.content.lower():
             await client.delete_message(message)
             await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
     if client.user.id != message.author.id.lower():
         if 'gay' in  message.content.lower():
-            await client.send_message(message.channel, 'ur gayer {0.author.mention}'.format(message))    
+            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))    
+           
 
     if client.user.id != message.author.id:
         if 'gey' in message.content.lower():
-            await client.send_message(message.channel, 'ur geyer {0.author.mention}'.format(message))
-
+            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
 @client.event
 async def on_member_join(member):
