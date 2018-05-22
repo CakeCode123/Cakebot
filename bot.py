@@ -1,4 +1,97 @@
-                                                "https://media1.tenor.com/images/fdafbad47d6a69cb5d3a90a8b9dff86f/tenor.gif?itemid=4936338",
+#Cakebot by Abby 
+
+
+import discord
+from discord.ext.commands import Bot
+from discord.ext import commands
+import asyncio
+import time
+import random
+import logging
+from discord.utils import get
+import datetime
+from re import match
+import json
+import os.path
+import os
+from urllib.parse import urlparse
+from discord.ext import commands
+import re
+
+
+module = discord
+
+Client = discord.Client()
+client = commands.Bot(command_prefix = "/")
+
+@client.event
+async def on_ready():
+    print(client.user.id)
+    print("Bot is ready and connected to discord")
+    await client.change_presence(game=discord.Game(name='with version 2.2 alpha'))
+   
+
+#Fun Commands!
+
+@client.event
+async def on_message(message):
+    if message.content.upper().startswith('/HEWO'):
+        if "437923291047526402" in [role.id for role in message.author.roles]: 
+            await client.send_message(message.channel, "Nice!")
+        else:
+            await client.send_message(message.channel, "You do not have permissions to execute this command!") 
+    if message.content.lower().startswith('/8ball'):
+      await client.send_message(message.channel, random.choice(["It is decidedly so :8ball:",
+                                                              "Without a doubt :8ball:",
+                                                              "Yes, definitely :8ball:",
+                                                              "If you try hard then you will figure it out :8ball:",
+                                                              "As I see it, yes :8ball:",
+                                                              "Most likely :8ball:",
+                                                              "Gomen'nasai i don't hanasu english, Try again later. :8ball:",
+                                                              "Yes :8ball:",
+                                                              "What? Are you a dumb? Of course! :8ball:",
+                                                              "Well... I honestly don't know WHO DO YOU THINK I'AM?! :8ball:",
+                                                              "Yes 100% :8ball:",
+                                                              "Its better for you to not know. :8ball:",
+                                                              "Hmm.. Yes :8ball:",
+                                                              "Ask yourself. :8ball:",
+                                                              "According to my calulations its a no :8ball:",
+                                                              "Call 911, they let will let you know. :8ball:",
+                                                              "My sources say no :8ball:",
+                                                              "Outlook not so good :8ball:",
+                                                              "Your IQ is too low for this question, Try another one :8ball:",
+                                                              "Why are you asking me?! Ask google! :8ball:",
+                                                              "Instant deny!:8ball:",
+                                                              "NO! JUST NO.:8ball:",
+                                                              "Invalid Question.exe"]))   
+                                                          
+    if message.content.lower().startswith("/gif"):
+        await client.send_message(message.channel, random.choice(["https://media0.giphy.com/media/f4V2mqvv0wT9m/giphy.gif",
+                                                         "https://media.giphy.com/media/4QxQgWZHbeYwM/giphy.gif",
+                                                         "https://thumbs.gfycat.com/OblongRapidAvocet-size_restricted.gif",
+                                                         "https://media1.tenor.com/images/445c3de1f9a6a87694bcbb2739d35451/tenor.gif?itemid=8312712",
+                                                         "https://i.pinimg.com/originals/b6/5c/5e/b65c5e33a54a2468a6e9f6e119cdaf9f.gif",
+                                                         "https://i.imgur.com/M3BG3Ck.gif",
+                                                         "http://i0.kym-cdn.com/photos/images/newsfeed/001/087/562/93c.gif",
+                                                         "http://i.imgur.com/0jAef66.gif",
+                                                         "https://thumbs.gfycat.com/InfatuatedUnrulyGyrfalcon-max-1mb.gif",
+                                                         "https://i.gifer.com/Jn9R.gif",
+                                                         "https://i.pinimg.com/originals/63/78/68/6378684a9a66f479c952d1ee1e854bd9.gif",
+                                                         "https://media.giphy.com/media/gnvlmIRPzVnGM/giphy.gif",
+                                                         "https://i.pinimg.com/originals/29/91/7a/29917a5226ee8f1ef08a4a2e6afde524.gif",
+                                                         "https://78.media.tumblr.com/8a1e120208a2d5b9d73ac9d3131d2fa2/tumblr_obrs3lLMna1s5f9ado2_500.gif",
+                                                         "https://78.media.tumblr.com/399259fe9dcae09a36f7ee4d35f7b514/tumblr_okt2l5Khy31tydz8to1_500.gif",
+                                                         "https://media1.tenor.com/images/9a64d7e66082895dfd26872e1929631a/tenor.gif?itemid=6062473",
+                                                         "https://media1.tenor.com/images/694927eede67ccf45f2601b9c2aad98b/tenor.gif?itemid=5401519",
+                                                         "https://media1.tenor.com/images/9db3300382b4692e3aa95164161ab2e8/tenor.gif?itemid=9188406",
+                                                         "https://thumbs.gfycat.com/LegalMiniatureChihuahua-size_restricted.gif",
+                                                         "https://media1.tenor.com/images/80a38c215bcde77ab897d1bea3c7bf96/tenor.gif?itemid=6078924",
+                                                         "https://vignette.wikia.nocookie.net/love-live/images/6/65/KoiAqua_Hanamaru.gif/revision/latest?cb=20160712080936",
+                                                         "https://media1.tenor.com/images/bea0139e175637da295b61164a8e33c2/tenor.gif?itemid=7222980",
+                                                         "https://media.giphy.com/media/ZLr299JYCUEHm/giphy.gif",
+                                                         "https://media1.tenor.com/images/fcc16d68c200fd0ff17e6e27978fb6c3/tenor.gif?itemid=7552283",
+                                                         "https://media1.tenor.com/images/831c64bcece59befbe6157bbb3a9f0fe/tenor.gif?itemid=7817206",
+                                                         "https://media1.tenor.com/images/fdafbad47d6a69cb5d3a90a8b9dff86f/tenor.gif?itemid=4936338",
                                                          "https://data.whicdn.com/images/284330063/original.gif"]))
 
 
@@ -182,6 +275,33 @@
 async def on_member_join(member):
     role = discord.utils.get(member.server.roles, id="365737396781973504")
     await client.add_roles(member, role)
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
