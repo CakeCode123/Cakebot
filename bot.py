@@ -103,9 +103,10 @@ async def on_message(message):
                                                                 "Tails! :large_orange_diamond:",
                                                                 "Heads! :large_blue_diamond:"]))
     if message.content.lower().startswith("/say"):
-        variable = message.content[len('/say'):].strip()
-        await client.send_message(message.channel, variable)
-        await client.delete_message(message)
+            variable = message.content[len('/say'):].strip()
+            await client.delete_message(message)
+            await client.send_message(message.channel, variable)
+        
     
     if message.content.lower().startswith("/rage"):
         await client.send_message(message.channel, random.choice(["(ノ ゜Д゜)ノ ︵ ┻━┻",
@@ -174,7 +175,7 @@ async def on_message(message):
     if message.content.lower().startswith('/invite'):
         embed=discord.Embed(color=0xf0ea6c)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/347362023828488192/446892855609262080/Dab.png")
-        embed.add_field(name="Discord Invite Link", value="https://discord.gg/T5Q7C5Q", inline=False)
+        embed.add_field(name="Discord Invite Link", value="https://discord.gg/pQDbbx9", inline=False)
         await client.send_message(message.channel, embed=embed)
 
     if message.content.lower().startswith('/user'):
@@ -217,14 +218,10 @@ async def on_message(message):
             pass
 
     if match("<@!?435379055253127178>", message.content) is not None:
-        await client.send_message(message.channel,"Hi {0.author.mention} i'm ᴄᴀᴋᴇ ʙᴏᴛ nice to meet you! I'm ran and made by cupcake!".format(message))
-    
-
-    if 'ᴄᴀᴋᴇ' in message.content:
-        await client.send_message(message.channel, '/help')
+        await client.send_message(message.channel,"Hi {0.author.mention} i'm Cake Bot nice to meet you! I'm ran and made by cupcake!".format(message))
 
 
-    if message.content.startswith('/dab'):
+    if message.content.lower().startswith('/dab'):
         await client.send_message(message.channel, "<o/")
         await client.delete_message(message)
     
@@ -271,13 +268,26 @@ async def on_message(message):
         if '<o/' in message.content.lower():
             await client.send_message(message.channel, 'YA YEET <o/ {0.author.mention}'.format(message))
 
+    if client.user.id != message.author.id:
+        if 'thinking' in message.content.lower():
+            await client.send_message(message.channel, ':thinking: Uh I think of potatoes, What about you? {0.author.mention}'.format(message))
+
+
+
 @client.event
 async def on_member_join(member):
     role = discord.utils.get(member.server.roles, id="365737396781973504")
     await client.add_roles(member, role)
+    msg = "Hi! {0} Welcome to {1}".format(member.mention, member.server.name)
+    await client.send_message(discord.Object(id='434605560382619650'), msg)
 
 
+@client.event
+async def on_member_remove(member):
+    msg = "Aw Leaving so soon? Cya later! {0}".format(member.mention)
+    await client.send_message(discord.Object(id='434605560382619650'), msg)
 
+   
 
 
 
