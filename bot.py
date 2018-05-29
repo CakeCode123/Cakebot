@@ -259,6 +259,9 @@ async def on_message(message):
         if 'gay' in  message.content.lower():
             await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))    
            
+    if client.user.id != message.author.id:
+        if 'oof' in message.content.lower():
+            await client.send_message(message.channel, '(╯°□°）╯︵ ┻━┻ OOF')
 
     if client.user.id != message.author.id:
         if 'gey' in message.content.lower():
@@ -269,8 +272,29 @@ async def on_message(message):
             await client.send_message(message.channel, 'YA YEET <o/ {0.author.mention}'.format(message))
 
     if client.user.id != message.author.id:
-        if 'thinking' in message.content.lower():
-            await client.send_message(message.channel, ':thinking: Uh I think of potatoes, What about you? {0.author.mention}'.format(message))
+        if ':thinking:' in message.content.lower():
+            await client.send_message(message.channel, ':thinking: THINKING INTENSIFIES {0.author.mention}'.format(message))
+      
+    if message.content.lower().startswith('/role'):
+        user = message.author
+        role = discord.utils.get(user.server.roles, id="449884167271088141")
+        if "395085021721133057" in [role.id for role in message.author.roles]:
+            await client.add_roles(user, role)
+            await client.add_reaction(message, "👍")
+        else:
+            await client.send_message(message.channel, "You need to be level 30+ to be able to this command!")
+            await client.delete_message(message)
+
+    if message.content.lower().startswith('/punish'):
+        role = discord.utils.get(message.server.roles,id='420576440111726592') 
+        if "340682622932090890" in [role.id for role in message.author.roles]:
+            await client.add_roles(message.mentions[0], role)
+        else:
+            await client.send_message(message.channel, "You do not have permissions to do this command")
+        
+
+
+
 
 
 
@@ -288,9 +312,6 @@ async def on_member_remove(member):
     await client.send_message(discord.Object(id='434605560382619650'), msg)
 
    
-
-
-
 
 
     
