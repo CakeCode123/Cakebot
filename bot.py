@@ -289,8 +289,17 @@ async def on_message(message):
         role = discord.utils.get(message.server.roles,id='420576440111726592') 
         if "340682622932090890" in [role.id for role in message.author.roles]:
             await client.add_roles(message.mentions[0], role)
+            await client.send_message(message.channel, "Successfully punished!")
         else:
             await client.send_message(message.channel, "You do not have permissions to do this command")
+
+    if message.content.lower().startswith('/unpunish'):
+        role = discord.utils.get(message.server.roles,id='420576440111726592') 
+        if "340682622932090890" in [role.id for role in message.author.roles]:
+            await client.remove_roles(message.mentions[0], role)
+            await client.send_message(message.channel, "Successfully unpunished")
+        else:
+            await client.send_message(message.channel, "You do not have permissions to do this command!")
         
 
 
@@ -310,8 +319,6 @@ async def on_member_join(member):
 async def on_member_remove(member):
     msg = "Aw Leaving so soon? Cya later! {0}".format(member.mention)
     await client.send_message(discord.Object(id='434605560382619650'), msg)
-
-   
 
 
     
