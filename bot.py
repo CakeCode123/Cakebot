@@ -164,10 +164,10 @@ async def on_message(message):
 
     if message.content.lower().startswith('/links'):
         embed = discord.Embed(title="Social Media", color=0x78f5d0)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/438864185976291342/443230701974978561/kotori_pfp.png")
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/347362023828488192/457009454521778176/profile.png")
         embed.add_field(name="Twitter", value="https://twitter.com/abbyplays123", inline=False)
         embed.add_field(name="Youtube", value="http://bit.ly/2tM7TNC", inline=True)
-        embed.add_field(name="Discord", value="https://discord.gg/T5Q7C5Q", inline=True)
+        embed.add_field(name="Discord", value="https://discord.gg/pQDbbx9", inline=True)
         embed.add_field(name="My Anime List", value="https://myanimelist.net/profile/AbbyCakez", inline=False)
         embed.set_footer(text="Cake Bot | Fun Channel")
         await client.send_message(message.channel, embed=embed)
@@ -254,22 +254,7 @@ async def on_message(message):
         if 'anime suck' in message.content.lower():
             await client.delete_message(message)
             await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
-
-    if client.user.id != message.author.id.lower():
-        if 'gay' in  message.content.lower():
-            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))    
-           
-    if client.user.id != message.author.id:
-        if 'oof' in message.content.lower():
-            await client.send_message(message.channel, '(╯°□°）╯︵ ┻━┻ OOF')
-
-    if client.user.id != message.author.id:
-        if 'gey' in message.content.lower():
-            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
-    
-    if client.user.id != message.author.id:
-        if '<o/' in message.content.lower():
-            await client.send_message(message.channel, 'YA YEET <o/ {0.author.mention}'.format(message))
+  
 
     if client.user.id != message.author.id:
         if ':thinking:' in message.content.lower():
@@ -302,7 +287,35 @@ async def on_message(message):
             await client.send_message(message.channel, "You do not have permissions to do this command!")
         
 
+    if message.content.lower().startswith('poll:'):
+        await client.add_reaction(message, "👍")
+        await client.add_reaction(message, "👎")
 
+    if message.content.lower().startswith("/poll"):
+            variable = message.content[len('/poll'):].strip()
+            await client.delete_message(message)
+            botmessage = await client.send_message(message.channel, variable)
+            await client.add_reaction(botmessage,"💙")
+            await client.add_reaction(botmessage,"💜")
+            await client.add_reaction(botmessage,"💛")
+            mention = await client.send_message(message.channel, "@everyone")
+            await client.delete_message(mention)
+
+    if message.content.lower().startswith('/suggest'):
+        variable = message.content[len('/suggest'):].strip()
+        channel = client.get_channel("393357389606158347")
+        botmsg = await client.send_message(channel, variable)
+        await client.add_reaction(botmsg, "👍")
+        await client.add_reaction(botmsg, "👎")
+        await client.send_message(channel, "Suggested by {0.author.mention}".format(message))
+
+    if message.content.startswith('/stat'):
+        mesg = await client.send_message(message.channel, 'Calculating... this might take a while. 💜')
+        counter = 0
+        async for msg in client.logs_from(message.channel, limit=9999999):
+            if msg.author == message.author:
+                counter += 1
+        await client.edit_message(mesg, '{} has {} messages in {}.'.format(message.author, str(counter), message.channel))
 
 
 
@@ -320,8 +333,29 @@ async def on_member_remove(member):
     msg = "Aw Leaving so soon? Cya later! {0}".format(member.mention)
     await client.send_message(discord.Object(id='434605560382619650'), msg)
 
+   
 
-    
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
