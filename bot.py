@@ -19,29 +19,23 @@ from discord.ext import commands
 import re
 
 
-module = discord
 
-Client = discord.Client()
-client = commands.Bot(command_prefix = "/")
+bot = commands.Bot(command_prefix='$')
 
-@client.event
+@bot.event
 async def on_ready():
-    print(client.user.id)
+    print(bot.user.id)
     print("Bot is ready and connected to discord")
-    await client.change_presence(game=discord.Game(name='with version 2.2 alpha'))
+    await bot.change_presence(game=discord.Game(name="Life is joke", type=3))
+    
    
 
 #Fun Commands!
 
-@client.event
+@bot.event
 async def on_message(message):
-    if message.content.upper().startswith('/HEWO'):
-        if "437923291047526402" in [role.id for role in message.author.roles]: 
-            await client.send_message(message.channel, "Nice!")
-        else:
-            await client.send_message(message.channel, "You do not have permissions to execute this command!") 
     if message.content.lower().startswith('/8ball'):
-      await client.send_message(message.channel, random.choice(["It is decidedly so :8ball:",
+      await bot.send_message(message.channel, random.choice(["It is decidedly so :8ball:",
                                                               "Without a doubt :8ball:",
                                                               "Yes, definitely :8ball:",
                                                               "If you try hard then you will figure it out :8ball:",
@@ -63,10 +57,11 @@ async def on_message(message):
                                                               "Why are you asking me?! Ask google! :8ball:",
                                                               "Instant deny!:8ball:",
                                                               "NO! JUST NO.:8ball:",
-                                                              "Invalid Question.exe"]))   
+                                                              "Invalid Question.exe"]))
+                                                   
                                                           
     if message.content.lower().startswith("/gif"):
-        await client.send_message(message.channel, random.choice(["https://media0.giphy.com/media/f4V2mqvv0wT9m/giphy.gif",
+        await bot.send_message(message.channel, random.choice(["https://media0.giphy.com/media/f4V2mqvv0wT9m/giphy.gif",
                                                          "https://media.giphy.com/media/4QxQgWZHbeYwM/giphy.gif",
                                                          "https://thumbs.gfycat.com/OblongRapidAvocet-size_restricted.gif",
                                                          "https://media1.tenor.com/images/445c3de1f9a6a87694bcbb2739d35451/tenor.gif?itemid=8312712",
@@ -95,8 +90,9 @@ async def on_message(message):
                                                          "https://data.whicdn.com/images/284330063/original.gif"]))
 
 
+        
     if message.content.lower().startswith('/coinflip'):
-       await client.send_message(message.channel, random.choice(["Tails! :large_orange_diamond:",
+       await bot.send_message(message.channel, random.choice(["Tails! :large_orange_diamond:",
                                                                 "Heads! :large_blue_diamond:",
                                                                 "Heads! :large_blue_diamond:",
                                                                 "Tails! :large_orange_diamond:",
@@ -104,12 +100,12 @@ async def on_message(message):
                                                                 "Heads! :large_blue_diamond:"]))
     if message.content.lower().startswith("/say"):
             variable = message.content[len('/say'):].strip()
-            await client.delete_message(message)
-            await client.send_message(message.channel, variable)
+            await bot.delete_message(message)
+            await bot.send_message(message.channel, variable)
         
     
     if message.content.lower().startswith("/rage"):
-        await client.send_message(message.channel, random.choice(["(ノ ゜Д゜)ノ ︵ ┻━┻",
+        await bot.send_message(message.channel, random.choice(["(ノ ゜Д゜)ノ ︵ ┻━┻",
                                                                  "(╯°□°)╯︵ ┻━┻ ︵ ╯(°□° ╯)",
                                                                  "http://i39.tinypic.com/kd0rk4.jpg",
                                                                  "http://cdn.playbuzz.com/cdn/ee40bd70-7e8d-4a83-b492-0aa7ee791f76/4ae7d4fd-3ea3-4d4a-8d37-f2c726480e72.jpg",
@@ -131,7 +127,7 @@ async def on_message(message):
         embed.add_field(name="Gif" , value="Random anime gifs", inline=True)
         embed.add_field(name="Invite" , value="Shows the server's invite link!", inline=False)
         embed.set_footer(text="Many more commands to come! | Fun Channel")
-        await client.send_message(message.channel, embed=embed)
+        await bot.send_message(message.channel, embed=embed)
 
     if message.content.lower().startswith('/server'):
         embed = discord.Embed(title="Fun Channel", url="https://discord.gg/T5Q7C5Q", color=0x4afbf7)
@@ -142,14 +138,14 @@ async def on_message(message):
         embed.add_field(name="What is the server about?", value="This server is about gaming, however we can still talk about other stuff if you wish, This server provides and accepts everything! So feel free to talk about whatever topic you want!", inline=True)
         embed.add_field(name="Who made this?", value="*100%* not Cupquake123#2042", inline=True)
         embed.set_footer(text="Fun Channel")
-        await client.send_message(message.channel, embed=embed)
+        await bot.send_message(message.channel, embed=embed)
 
     if message.content.lower().startswith('/apply'):
         embed = discord.Embed(color=0xb1fcf4)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/347362023828488192/446892855609262080/Dab.png")
         embed.add_field(name="Staff Application Fourm", value="Fun Channel", inline=False)
         embed.add_field(name="Apply now!", value="https://goo.gl/forms/9SF8PtdpudF3dfqr1", inline=True)
-        await client.send_message(message.channel, embed=embed)
+        await bot.send_message(message.channel, embed=embed)
     
     
     if message.content.lower().startswith('/socialmedia'):
@@ -160,7 +156,7 @@ async def on_message(message):
         embed.add_field(name="Discord", value="https://discord.gg/T5Q7C5Q", inline=True)
         embed.add_field(name="My Anime List", value="https://myanimelist.net/profile/AbbyCakez", inline=False)
         embed.set_footer(text="Cake Bot | Fun Channel")
-        await client.send_message(message.channel, embed=embed)
+        await bot.send_message(message.channel, embed=embed)
 
     if message.content.lower().startswith('/links'):
         embed = discord.Embed(title="Social Media", color=0x78f5d0)
@@ -170,13 +166,13 @@ async def on_message(message):
         embed.add_field(name="Discord", value="https://discord.gg/pQDbbx9", inline=True)
         embed.add_field(name="My Anime List", value="https://myanimelist.net/profile/AbbyCakez", inline=False)
         embed.set_footer(text="Cake Bot | Fun Channel")
-        await client.send_message(message.channel, embed=embed)
+        await bot.send_message(message.channel, embed=embed)
 
     if message.content.lower().startswith('/invite'):
         embed=discord.Embed(color=0xf0ea6c)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/347362023828488192/446892855609262080/Dab.png")
         embed.add_field(name="Discord Invite Link", value="https://discord.gg/pQDbbx9", inline=False)
-        await client.send_message(message.channel, embed=embed)
+        await bot.send_message(message.channel, embed=embed)
 
     if message.content.lower().startswith('/user'):
         try:
@@ -209,233 +205,140 @@ async def on_message(message):
                 value=user.id
             )
  
-            await client.send_message(message.channel, embed=userembed)
+            await bot.send_message(message.channel, embed=userembed)
         except IndexError:
-            await client.send_message(message.channel, "Couldn't find user! Mention the user you want to check!")
+            await bot.send_message(message.channel, "Couldn't find user! Mention the user you want to check!")
         except:
-            await client.send_message(message.channel, "An error as occured! Try again later.")
+            await bot.send_message(message.channel, "An error as occured! Try again later.")
         finally:
             pass
 
     if match("<@!?435379055253127178>", message.content) is not None:
-        await client.send_message(message.channel,"Hi {0.author.mention} i'm Cake Bot nice to meet you! I'm ran and made by cupcake!".format(message))
+        await bot.send_message(message.channel,"Hi {0.author.mention} i'm Cake Bot nice to meet you! I'm ran and made by cupcake!".format(message))
 
 
     if message.content.lower().startswith('/dab'):
-        await client.send_message(message.channel, "<o/")
-        await client.delete_message(message)
+        await bot.send_message(message.channel, "<o/")
+        await bot.delete_message(message)
     
-    if client.user.id != message.author.id:
+    if bot.user.id != message.author.id:
         if 'anime is shit' in message.content.lower():
-            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
+            await bot.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
-    if client.user.id != message.author.id:
+    if bot.user.id != message.author.id:
         if 'anime is sht' in message.content.lower():
-            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
+            await bot.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
-    if client.user.id != message.author.id:
+    if bot.user.id != message.author.id:
         if 'anime is bad' in message.content.lower():
-            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
+            await bot.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
-    if client.user.id != message.author.id:
+    if bot.user.id != message.author.id:
         if 'fk anime' in message.content.lower():
-            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
+            await bot.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
-    if client.user.id != message.author.id:
+    if bot.user.id != message.author.id:
         if 'fuck anime' in message.content.lower():
-            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
+            await bot.send_message(message.channel, 'no u {0.author.mention}'.format(message))
 
 
-    if client.user.id != message.author.id:
+    if bot.user.id != message.author.id:
         if 'no u' in message.content.lower():
-            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
+            await bot.send_message(message.channel, 'no u {0.author.mention}'.format(message))
     
-    if client.user.id != message.author.id:
+    if bot.user.id != message.author.id:
         if 'anime suck' in message.content.lower():
-            await client.delete_message(message)
-            await client.send_message(message.channel, 'no u {0.author.mention}'.format(message))
+            await bot.delete_message(message)
+            await bot.send_message(message.channel, 'no u {0.author.mention}'.format(message))
   
 
-    if client.user.id != message.author.id:
+    if bot.user.id != message.author.id:
         if ':thinking:' in message.content.lower():
-            await client.send_message(message.channel, ':thinking: THINKING INTENSIFIES {0.author.mention}'.format(message))
+            await bot.send_message(message.channel, ':thinking: THINKING INTENSIFIES {0.author.mention}'.format(message))
       
     if message.content.lower().startswith('/role'):
         user = message.author
         role = discord.utils.get(user.server.roles, id="449884167271088141")
         if "395085021721133057" in [role.id for role in message.author.roles]:
-            await client.add_roles(user, role)
-            await client.add_reaction(message, "👍")
+            await bot.add_roles(user, role)
+            await bot.add_reaction(message, "👍")
+            delete = await bot.send_message(message.channel, "Success! You now have grammar nazi role!")
+            await bot.delete_message(delete)
         else:
-            await client.send_message(message.channel, "You need to be level 30+ to be able to this command!")
-            await client.delete_message(message)
+            await bot.send_message(message.channel, "You need to be level 30+ to be able to this command!")
+            await bot.delete_message(message)
 
     if message.content.lower().startswith('/punish'):
         role = discord.utils.get(message.server.roles,id='420576440111726592') 
         if "340682622932090890" in [role.id for role in message.author.roles]:
-            await client.add_roles(message.mentions[0], role)
-            await client.send_message(message.channel, "Successfully punished!")
+            await bot.add_roles(message.mentions[0], role)
+            await bot.send_message(message.channel, "Successfully punished!")
         else:
-            await client.send_message(message.channel, "You do not have permissions to do this command")
+            await bot.send_message(message.channel, "You do not have permissions to do this command")
 
     if message.content.lower().startswith('/unpunish'):
         role = discord.utils.get(message.server.roles,id='420576440111726592') 
         if "340682622932090890" in [role.id for role in message.author.roles]:
-            await client.remove_roles(message.mentions[0], role)
-            await client.send_message(message.channel, "Successfully unpunished")
+            await bot.remove_roles(message.mentions[0], role)
+            await bot.send_message(message.channel, "Successfully unpunished")
         else:
-            await client.send_message(message.channel, "You do not have permissions to do this command!")
-        
+            await bot.send_message(message.channel, "You do not have permissions to do this command!")
 
     if message.content.lower().startswith('poll:'):
-        await client.add_reaction(message, "👍")
-        await client.add_reaction(message, "👎")
+        await bot.add_reaction(message, "👍")
+        await bot.add_reaction(message, "👎")
+        mention = await bot.send_message(message.channel, "@everyone")
+        await bot.delete_message(mention)
 
     if message.content.lower().startswith("/poll"):
             variable = message.content[len('/poll'):].strip()
-            await client.delete_message(message)
-            botmessage = await client.send_message(message.channel, variable)
-            await client.add_reaction(botmessage,"💙")
-            await client.add_reaction(botmessage,"💜")
-            await client.add_reaction(botmessage,"💛")
-            mention = await client.send_message(message.channel, "@everyone")
-            await client.delete_message(mention)
+            await bot.delete_message(message)
+            botmessage = await  bot.send_message(message.channel, variable)
+            await bot.send_message(message.channel,"Asked by {0.author.mention}".format(message))
+            await bot.add_reaction(botmessage,"💙")
+            await bot.add_reaction(botmessage,"💜")
+            await bot.add_reaction(botmessage,"💛")
+            mention = await bot.send_message(message.channel, "@everyone")
+            await bot.delete_message(mention)
 
     if message.content.lower().startswith('/suggest'):
         variable = message.content[len('/suggest'):].strip()
-        channel = client.get_channel("393357389606158347")
-        botmsg = await client.send_message(channel, variable)
-        await client.add_reaction(botmsg, "👍")
-        await client.add_reaction(botmsg, "👎")
-        await client.send_message(channel, "Suggested by {0.author.mention}".format(message))
+        channel = bot.get_channel("393357389606158347")
+        botmsg = await bot.send_message(channel, variable)
+        await bot.add_reaction(botmsg, "👍")
+        await bot.add_reaction(botmsg, "👎")
+        await bot.send_message(channel, "Suggested by {0.author.mention}".format(message))
 
-    if message.content.startswith('/stat'):
-        mesg = await client.send_message(message.channel, 'Calculating... this might take a while. 💜')
-        counter = 0
-        async for msg in client.logs_from(message.channel, limit=9999999):
-            if msg.author == message.author:
-                counter += 1
-        await client.edit_message(mesg, '{} has {} messages in {}.'.format(message.author, str(counter), message.channel))
+    if message.content.lower().startswith('/kick'):
+        await bot.kick(message.mentions[0])
+        await bot.send_message(message.channel, "Succesfully kicked")
+   
+    if message.content.lower().startswith('/club'):
+       embed = discord.Embed(color=0x51f79b)
+       embed.add_field(name="Clubs!", value="To create a club simply register at https://goo.gl/forms/6XhLVh3f6aKm9cKu2 make sure you meet the requirements (as listed below) and you also agree on our rules.", inline=True)
+       embed.add_field(name="Club Requirements", value="We have this to keep the clubs organized, active and fun!", inline=True)
+       embed.add_field(name="- Club Must be PG", value="Keep it PG, Any NSFW Clubs will be automatically disbanded", inline=True)
+       embed.add_field(name="- Club must have atleast 3 members", value="on making a club you require atleast 3 members to create your club so we don't have any clubs called 'Welcome to the club that has a long name because i have no friends' yeah...", inline=True)
+       embed.add_field(name="- Club must the only subject", value="Ex. Anime club and weeb club, same subject this will make it so there's no dupe clubs of any sort", inline=True)
+       embed.add_field(name="- Club Leader must be level 10+ while club members needs to be level 2+", value="To make sure clubs are active :D", inline=True)
+       embed.add_field(name="=====CLUB RULES=====", value="Rules that EVERY club should follow!", inline=True)
+       embed.add_field(name="1. Club Recuirtment", value="Now, i know you wanna spam everybody in the channel about your new club that you made with your friends! If you want to do that go #club-recruitment, however please do not spam general or spam people about your club or force them to join or this will lead to a punishment", inline=False)
+       embed.add_field(name="AND MANY MORE RULES TO COME!", value="Yeah i ran out of ideas whachu gunna do about it ? ;3", inline=True)
+       await bot.send_message(message.channel, embed=embed)
 
 
+    
 
-
-@client.event
+@bot.event
 async def on_member_join(member):
     role = discord.utils.get(member.server.roles, id="365737396781973504")
-    await client.add_roles(member, role)
+    await bot.add_roles(member, role)
     msg = "Hi! {0} Welcome to {1}".format(member.mention, member.server.name)
-    await client.send_message(discord.Object(id='434605560382619650'), msg)
+    await bot.send_message(discord.Object(id='434605560382619650'), msg)
 
 
-@client.event
+@bot.event
 async def on_member_remove(member):
     msg = "Aw Leaving so soon? Cya later! {0}".format(member.mention)
-    await client.send_message(discord.Object(id='434605560382619650'), msg)
-
-   
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-              
-
-        
-    
-
-
-         
-
-
-  
-
-
-
-
-        
-    
-
-    
-    
-
-
-
-   
-client.run(str(os.environ.get('BOT_TOKEN')))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    await bot.send_message(discord.Object(id='434605560382619650'), msg)
 
