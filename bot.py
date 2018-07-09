@@ -326,8 +326,37 @@ async def on_message(message):
        embed.add_field(name="AND MANY MORE RULES TO COME!", value="Yeah i ran out of ideas whachu gunna do about it ? ;3", inline=True)
        await bot.send_message(message.channel, embed=embed)
 
+class Game:
+    def __init__(self):
+        self.points = 0
+        self.inventory = []
 
-    
+sessions = {}
+
+@bot.command(pass_context=True)
+async def play(ctx):
+    if ctx.message.author.id in sessions:
+        await bot.say("You're already playing")
+        return
+    sessions[ctx.message.author.id] = Game()
+    await bot.say("Welcome to the game!")
+
+@bot.command(pass_context=True)
+async def quit(ctx):
+    if ctx.message.author.id not in sessions:
+        await bot.say("You're not playing the game")
+        return
+    del sessions[ctx.message.author.id]
+    await bot.say("OOF!")
+
+@bot.command(pass_context=True)
+async def examine(ctx):
+    session = sessions.get(ctx.message.author.id, None)
+    if session is None:
+        await bot.say("You're not playing the game")
+        return
+    session.inventory.append("A rock")
+    await bot.say("ROCK!, What?")
 
 @bot.event
 async def on_member_join(member):
