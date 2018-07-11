@@ -20,20 +20,18 @@ import re
 
 
 
-bot = commands.Bot(command_prefix='$')
+bot = commands.Bot(command_prefix='/')
 
 @bot.event
 async def on_ready():
     print(bot.user.id)
     print("Bot is ready and connected to discord")
     await bot.change_presence(game=discord.Game(name="Life is joke", type=3))
-    
-   
 
 #Fun Commands!
 
 @bot.event
-async def on_message(message):
+async def on_message(message):    
     if message.content.lower().startswith('/8ball'):
       await bot.send_message(message.channel, random.choice(["It is decidedly so :8ball:",
                                                               "Without a doubt :8ball:",
@@ -57,8 +55,7 @@ async def on_message(message):
                                                               "Why are you asking me?! Ask google! :8ball:",
                                                               "Instant deny!:8ball:",
                                                               "NO! JUST NO.:8ball:",
-                                                              "Invalid Question.exe"]))
-                                                   
+                                                              "Yes your gay, Wait what? that wasn't the question? Well uh just letting ya know."]))                                         
                                                           
     if message.content.lower().startswith("/gif"):
         await bot.send_message(message.channel, random.choice(["https://media0.giphy.com/media/f4V2mqvv0wT9m/giphy.gif",
@@ -102,6 +99,7 @@ async def on_message(message):
             variable = message.content[len('/say'):].strip()
             await bot.delete_message(message)
             await bot.send_message(message.channel, variable)
+            
         
     
     if message.content.lower().startswith("/rage"):
@@ -312,6 +310,15 @@ async def on_message(message):
     if message.content.lower().startswith('/kick'):
         await bot.kick(message.mentions[0])
         await bot.send_message(message.channel, "Succesfully kicked")
+
+    if message.content.startswith('/statmsg'):
+        await bot.send_typing(message.channel)
+        mesg = await bot.send_message(message.channel, 'Calculating... this might take a while. 💜')
+        counter = 0
+        async for msg in bot.logs_from(message.channel, limit=9999999):
+            if msg.author == message.author:
+                counter += 1
+        await bot.edit_message(mesg, '{} has {} messages in {}.'.format(message.author, str(counter), message.channel))
    
     if message.content.lower().startswith('/club'):
        embed = discord.Embed(color=0x51f79b)
@@ -325,38 +332,9 @@ async def on_message(message):
        embed.add_field(name="1. Club Recuirtment", value="Now, i know you wanna spam everybody in the channel about your new club that you made with your friends! If you want to do that go #club-recruitment, however please do not spam general or spam people about your club or force them to join or this will lead to a punishment", inline=False)
        embed.add_field(name="AND MANY MORE RULES TO COME!", value="Yeah i ran out of ideas whachu gunna do about it ? ;3", inline=True)
        await bot.send_message(message.channel, embed=embed)
+    
+    
 
-class Game:
-    def __init__(self):
-        self.points = 0
-        self.inventory = []
-
-sessions = {}
-
-@bot.command(pass_context=True)
-async def play(ctx):
-    if ctx.message.author.id in sessions:
-        await bot.say("You're already playing")
-        return
-    sessions[ctx.message.author.id] = Game()
-    await bot.say("Welcome to the game!")
-
-@bot.command(pass_context=True)
-async def quit(ctx):
-    if ctx.message.author.id not in sessions:
-        await bot.say("You're not playing the game")
-        return
-    del sessions[ctx.message.author.id]
-    await bot.say("OOF!")
-
-@bot.command(pass_context=True)
-async def examine(ctx):
-    session = sessions.get(ctx.message.author.id, None)
-    if session is None:
-        await bot.say("You're not playing the game")
-        return
-    session.inventory.append("A rock")
-    await bot.say("ROCK!, What?")
 
 @bot.event
 async def on_member_join(member):
@@ -370,4 +348,31 @@ async def on_member_join(member):
 async def on_member_remove(member):
     msg = "Aw Leaving so soon? Cya later! {0}".format(member.mention)
     await bot.send_message(discord.Object(id='434605560382619650'), msg)
+
+
+
+
+
+
+
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
