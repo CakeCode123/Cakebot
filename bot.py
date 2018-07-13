@@ -353,7 +353,7 @@ async def on_member_remove(member):
 
 
 
-client.run(str(os.environ.get('BOT_TOKEN')))
+bot.run(str(os.environ.get('BOT_TOKEN')))
 
     
    
