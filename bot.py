@@ -327,12 +327,60 @@ async def on_message(message):
        embed.add_field(name="- Club Must be PG", value="Keep it PG, Any NSFW Clubs will be automatically disbanded", inline=True)
        embed.add_field(name="- Club must have atleast 3 members", value="on making a club you require atleast 3 members to create your club so we don't have any clubs called 'Welcome to the club that has a long name because i have no friends' yeah...", inline=True)
        embed.add_field(name="- Club must the only subject", value="Ex. Anime club and weeb club, same subject this will make it so there's no dupe clubs of any sort", inline=True)
-       embed.add_field(name="- Club Leader must be level 10+ while club members needs to be level 2+", value="To make sure clubs are active :D", inline=True)
+       embed.add_field(name="- Club Leader must be level 12+ while club members needs to be level 2+", value="To make sure clubs are active :D", inline=True)
        embed.add_field(name="=====CLUB RULES=====", value="Rules that EVERY club should follow!", inline=True)
        embed.add_field(name="1. Club Recuirtment", value="Now, i know you wanna spam everybody in the channel about your new club that you made with your friends! If you want to do that go #club-recruitment, however please do not spam general or spam people about your club or force them to join or this will lead to a punishment", inline=False)
        embed.add_field(name="AND MANY MORE RULES TO COME!", value="Yeah i ran out of ideas whachu gunna do about it ? ;3", inline=True)
        await bot.send_message(message.channel, embed=embed)
     
+
+    club = {}
+
+    if message.content.lower().startswith('/create'):
+        if message.author.id in club:
+            await bot.send_message(message.channel, "You already have a club!")  
+            return   
+        channel = bot.get_channel("467907944483258370")
+        await bot.send_message(message.channel, "What would you like to name your club? (Type /name)")
+
+        def check(msg):
+            return msg.content.startswith('/name')
+
+        message = await bot.wait_for_message(author=message.author, check=check)
+        name = message.content[len('/name'):].strip()
+
+        club[message.author.id] = club
+
+        await bot.send_message(message.channel, '**{}** will be your club name!'.format(name))
+        await bot.send_message(channel, "NAME: **{}**".format(name))
+        await bot.send_message(message.channel, "List down your current club members (/member)")
+     
+    if message.content.lower().startswith('/member'):
+        channel = bot.get_channel("467907944483258370")
+        member = message.content[len('/member'):].strip()
+        await bot.send_message(message.channel, "Topic of your club? Ex. Anime club (/topic)")
+        await bot.send_message(channel, "CLUB MEMBERS: **{}**".format(member))
+
+    if message.content.lower().startswith('/topic'):
+        channel = bot.get_channel("467907944483258370")
+        topic = message.content[len('/topic'):].strip()
+        await bot.send_message(message.channel, "That's it! Our staff will now review your application, good luck!")
+        await bot.send_message(channel, "CLUB TOPIC: **{}**".format(topic))
+
+
+    
+
+
+        
+
+
+
+
+
+        
+            
+            
+        
     
 
 
@@ -348,6 +396,10 @@ async def on_member_join(member):
 async def on_member_remove(member):
     msg = "Aw Leaving so soon? Cya later! {0}".format(member.mention)
     await bot.send_message(discord.Object(id='434605560382619650'), msg)
+
+
+
+
 
 
 
