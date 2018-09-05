@@ -1,7 +1,7 @@
 #Cakebot by Abby 
 
 
-import discord
+import discord 
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
@@ -248,6 +248,10 @@ async def on_message(message):
         if 'anime suck' in message.content.lower():
             await bot.delete_message(message)
             await bot.send_message(message.channel, 'no u {0.author.mention}'.format(message))
+
+    if bot.user.id != message.author.id:
+        if 'discord.gg/' in message.content.lower():
+            await bot.send_message(message.channel, 'Discord invites are forbbiden! Please mention the staff for details. {0.author.mention}'.format(message))
   
 
     if bot.user.id != message.author.id:
@@ -272,7 +276,7 @@ async def on_message(message):
             await bot.add_roles(message.mentions[0], role)
             await bot.send_message(message.channel, "Successfully punished!")
         else:
-            await bot.send_message(message.channel, "You do not have permissions to do this command")
+            await bot.send_message(message.channel, "Yohane does not grant such mortals great power. Go on Shoo!")
 
     if message.content.lower().startswith('/unpunish'):
         role = discord.utils.get(message.server.roles,id='420576440111726592') 
@@ -280,7 +284,7 @@ async def on_message(message):
             await bot.remove_roles(message.mentions[0], role)
             await bot.send_message(message.channel, "Successfully unpunished")
         else:
-            await bot.send_message(message.channel, "You do not have permissions to do this command!")
+            await bot.send_message(message.channel, "Yohane does not grant such mortals great power. Go on Shoo!")
 
     if message.content.lower().startswith('poll:'):
         await bot.add_reaction(message, "👍")
@@ -308,65 +312,50 @@ async def on_message(message):
         await bot.send_message(channel, "Suggested by {0.author.mention}".format(message))
 
     if message.content.lower().startswith('/kick'):
-        await bot.kick(message.mentions[0])
-        await bot.send_message(message.channel, "Succesfully kicked")
+        if "340682622932090890" in [role.id for role in message.author.roles]:
+            await bot.kick(message.mentions[0])
+            await bot.send_message(message.channel, "Successfully kicked")
+        else:
+            await bot.send_messsage(message.channel, "Yohane does not grant such mortals great power. Go on Shoo!")
+            
 
-    if message.content.startswith('/statmsg'):
-        await bot.send_typing(message.channel)
-        mesg = await bot.send_message(message.channel, 'Calculating... this might take a while. 💜')
-        counter = 0
-        async for msg in bot.logs_from(message.channel, limit=9999999):
-            if msg.author == message.author:
-                counter += 1
-        await bot.edit_message(mesg, '{} has {} messages in {}.'.format(message.author, str(counter), message.channel))
+    if message.content.lower().startswith('/mute'):
+        role = discord.utils.get(message.server.roles,id='437229289482747904') 
+        if "340682622932090890" in [role.id for role in message.author.roles]:
+            await bot.add_roles(message.mentions[0], role)
+            await bot.send_message(message.channel, "Successfully sent to custody! CIAO~!")
+        else:
+            await bot.send_message(message.channel, "Yohane does not grant such mortals great power. Go on Shoo!")
+
+    if message.content.lower().startswith('/unmute'):
+        role = discord.utils.get(message.server.roles,id='437229289482747904') 
+        if "340682622932090890" in [role.id for role in message.author.roles]:
+            await bot.remove_roles(message.mentions[0], role)
+            await bot.send_message(message.channel, "Successfully released from jail!")
+        else:
+            await bot.send_message(message.channel, "Yohane does not grant such mortals great power. Go on Shoo!")
+
+
+
+
    
-    if message.content.lower().startswith('/club'):
-       embed = discord.Embed(color=0x51f79b)
-       embed.add_field(name="Clubs!", value="To create a club simply register at https://goo.gl/forms/6XhLVh3f6aKm9cKu2 make sure you meet the requirements (as listed below) and you also agree on our rules.", inline=True)
-       embed.add_field(name="Club Requirements", value="We have this to keep the clubs organized, active and fun!", inline=True)
-       embed.add_field(name="- Club Must be PG", value="Keep it PG, Any NSFW Clubs will be automatically disbanded", inline=True)
-       embed.add_field(name="- Club must have atleast 3 members", value="on making a club you require atleast 3 members to create your club so we don't have any clubs called 'Welcome to the club that has a long name because i have no friends' yeah...", inline=True)
-       embed.add_field(name="- Club must the only subject", value="Ex. Anime club and weeb club, same subject this will make it so there's no dupe clubs of any sort", inline=True)
-       embed.add_field(name="- Club Leader must be level 12+ while club members needs to be level 2+", value="To make sure clubs are active :D", inline=True)
-       embed.add_field(name="=====CLUB RULES=====", value="Rules that EVERY club should follow!", inline=True)
-       embed.add_field(name="1. Club Recuirtment", value="Now, i know you wanna spam everybody in the channel about your new club that you made with your friends! If you want to do that go #club-recruitment, however please do not spam general or spam people about your club or force them to join or this will lead to a punishment", inline=False)
-       embed.add_field(name="AND MANY MORE RULES TO COME!", value="Yeah i ran out of ideas whachu gunna do about it ? ;3", inline=True)
-       await bot.send_message(message.channel, embed=embed)
+@bot.event
+async def club(ctx):
+    embed = discord.Embed(color=0x51f79b)
+    embed.add_field(name="Clubs!", value="To create a club simply type /create at #commands make sure you meet the requirements (as listed below) and you also agree on our rules.", inline=True)
+    embed.add_field(name="Club Requirements", value="We have this to keep the clubs organized, active and fun!", inline=True)
+    embed.add_field(name="- Club Must be PG", value="Keep it PG, Any NSFW Clubs will be automatically disbanded", inline=True)
+    embed.add_field(name="- Club must have atleast 3 members", value="on making a club you require atleast 3 members to create your club so we don't have any clubs called 'Welcome to the club that has a long name because i have no friends' yeah...", inline=True)
+    embed.add_field(name="- Club must the only subject", value="Ex. Anime club and weeb club, same subject this will make it so there's no dupe clubs of any sort", inline=True)
+    embed.add_field(name="- Club Leader must be level 12+ while club members needs to be level 2+", value="To make sure clubs are active :D", inline=True)
+    embed.add_field(name="=====CLUB RULES=====", value="Rules that EVERY club should follow!", inline=True)
+    embed.add_field(name="1. Club Recuirtment", value="Now, i know you wanna spam everybody in the channel about your new club that you made with your friends! If you want to do that go #club-recruitment, however please do not spam general or spam people about your club or force them to join or this will lead to a punishment", inline=False)
+    embed.add_field(name="AND MANY MORE RULES TO COME!", value="Yeah i ran out of ideas whachu gunna do about it ? ;3", inline=True)
+    await bot.say(embed=embed)
     
 
-    club = {}
 
-    if message.content.lower().startswith('/create'):
-        if message.author.id in club:
-            await bot.send_message(message.channel, "You already have a club!")  
-            return   
-        channel = bot.get_channel("467907944483258370")
-        await bot.send_message(message.channel, "What would you like to name your club? (Type /name)")
-
-        def check(msg):
-            return msg.content.startswith('/name')
-
-        message = await bot.wait_for_message(author=message.author, check=check)
-        name = message.content[len('/name'):].strip()
-
-        club[message.author.id] = club
-
-        await bot.send_message(message.channel, '**{}** will be your club name!'.format(name))
-        await bot.send_message(channel, "NAME: **{}**".format(name))
-        await bot.send_message(message.channel, "List down your current club members (/member)")
-     
-    if message.content.lower().startswith('/member'):
-        channel = bot.get_channel("467907944483258370")
-        member = message.content[len('/member'):].strip()
-        await bot.send_message(message.channel, "Topic of your club? Ex. Anime club (/topic)")
-        await bot.send_message(channel, "CLUB MEMBERS: **{}**".format(member))
-
-    if message.content.lower().startswith('/topic'):
-        channel = bot.get_channel("467907944483258370")
-        topic = message.content[len('/topic'):].strip()
-        await bot.send_message(message.channel, "That's it! Our staff will now review your application, good luck!")
-        await bot.send_message(channel, "CLUB TOPIC: **{}**".format(topic))
-
+   
 
     
 
@@ -396,6 +385,14 @@ async def on_member_join(member):
 async def on_member_remove(member):
     msg = "Aw Leaving so soon? Cya later! {0}".format(member.mention)
     await bot.send_message(discord.Object(id='434605560382619650'), msg)
+
+
+
+
+
+
+
+
 
 
 
