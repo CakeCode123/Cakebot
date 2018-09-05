@@ -252,12 +252,20 @@ async def on_message(message):
     if bot.user.id != message.author.id:
         if 'discord.gg/' in message.content.lower():
             await bot.delete_message(message)
-            await bot.send_message(message.channel, 'Discord invites are forbbiden! Please mention the staff for details. {0.author.mention}'.format(message))
+            await bot.send_message(message.channel, 'Discord invites are forbidden! Please mention the staff for details. {0.author.mention}'.format(message))
   
-
     if bot.user.id != message.author.id:
-        if ':thinking:' in message.content.lower():
-            await bot.send_message(message.channel, ':thinking: THINKING INTENSIFIES {0.author.mention}'.format(message))
+        if 'joke' in message.content.lower():
+            for x in bot.get_all_emojis():
+                if x.id == '486879240583774208':
+                    return await bot.add_reaction(message, x)
+    
+    if bot.user.id != message.author.id:
+        if 'thinking' in message.content.lower():
+            for x in bot.get_all_emojis():
+                if x.id == '480011992929665048':
+                    return await bot.add_reaction(message, x)
+            
       
     if message.content.lower().startswith('/role'):
         user = message.author
@@ -386,6 +394,31 @@ async def on_member_join(member):
 async def on_member_remove(member):
     msg = "Aw Leaving so soon? Cya later! {0}".format(member.mention)
     await bot.send_message(discord.Object(id='434605560382619650'), msg)
+
+
+
+
+
+
+
+    
+    
+bot.run("NDM1Mzc5MDU1MjUzMTI3MTc4.Dd2HJQ.Zf0p51FvpfvXWT-cnXFECwxqbMY")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
