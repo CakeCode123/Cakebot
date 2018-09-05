@@ -251,6 +251,7 @@ async def on_message(message):
 
     if bot.user.id != message.author.id:
         if 'discord.gg/' in message.content.lower():
+            await bot.delete_message(message)
             await bot.send_message(message.channel, 'Discord invites are forbbiden! Please mention the staff for details. {0.author.mention}'.format(message))
   
 
