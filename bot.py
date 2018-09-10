@@ -259,6 +259,12 @@ async def on_message(message):
             for x in bot.get_all_emojis():
                 if x.id == '486879240583774208':
                     return await bot.add_reaction(message, x)
+
+    if bot.user.id != message.author.id:
+        if 'jk' in message.content.lower():
+            for x in bot.get_all_emojis():
+                if x.id == '486879240583774208':
+                    return await bot.add_reaction(message, x)
     
     if bot.user.id != message.author.id:
         if 'thinking' in message.content.lower():
@@ -344,10 +350,18 @@ async def on_message(message):
         else:
             await bot.send_message(message.channel, "Yohane does not grant such mortals great power. Go on Shoo!")
 
+    if message.content.lower().startswith('/ship'):
+       mentions = [m.mention for m in message.mentions]
+       mention_list = ", ".join(mentions[:-1]) + mentions[-1]
+       msgs = ["sitting on a tree K I S S I N G", "love each other <3", "needs some privacy :eyes:", "makes a lovely paring!", "When's the marriage?", "I SHIP IT!", "Love Arrow Shooto~", "has both descended to love heaven!", "is a lovely couple",]
+       await bot.send_message(message.channel, mention_list + random.choice(msgs))
 
-
-
-   
+    if message.content.lower().startswith('/gayrate'):
+        mentions = [m.mention for m in message.mentions]
+        mention_list = ", ".join(mentions[:-1]) + mentions[-1]
+        gaylist = ["Gay o meter :b:roke 9999% :gay_pride_flag:", ":thinking: Semi-Gay 30% :gay_pride_flag:", "Not gay but bisexual gayness 0%"]
+        message = await bot.send_message(message.channel, mention_list + random.choice(gaylist))
+        
 @bot.event
 async def club(ctx):
     embed = discord.Embed(color=0x51f79b)
@@ -403,9 +417,6 @@ async def on_member_remove(member):
 
     
     
-bot.run("NDM1Mzc5MDU1MjUzMTI3MTc4.Dd2HJQ.Zf0p51FvpfvXWT-cnXFECwxqbMY")
-
-
 
 
 
